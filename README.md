@@ -1,2 +1,3 @@
-# Only-dreams-
-adult site whit AI, NO HUMANS 
+# OnlyDreams
+AI-powered fantasy video generator.
+Deploy ready for Vercel.

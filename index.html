@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OnlyDreams - AI Fantasy Generator</title>
+<style>
+body {font-family: Arial; background:black; color:white; text-align:center; padding:40px;}
+input,textarea {width:80%; padding:10px; margin:10px; border-radius:8px;}
+button {padding:12px 22px; background:#ff00cc; border:none; color:white; border-radius:8px;}
+</style>
+</head>
+<body>
+<h1>OnlyDreams</h1>
+<p>Create fantasy videos safely with AI</p>
+<textarea id="prompt" placeholder="Describe your dream..."></textarea><br>
+<button onclick="generate()">Generate Video</button>
+<p id="status"></p>
+<script>
+async function generate(){
+  document.getElementById("status").textContent = "Generating...";
+  const prompt = document.getElementById("prompt").value;
+  const res = await fetch("/api/generate-video", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({prompt})
+  });
+  const data = await res.json();
+  document.getElementById("status").innerHTML = "Video Ready:<br><a href='" + data.url + "' target='_blank'>" + data.url + "</a>";
+}
+</script>
+</body>
+</html>
